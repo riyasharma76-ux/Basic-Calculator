@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple PHP Calculator</title>
+</head>
+<body>
+
+<h2>Simple Calculator</h2>
+
+<form method="post">
+    Enter First Number: <input type="number" name="num1" required><br><br>
+    Enter Second Number: <input type="number" name="num2" required><br><br>
+    
+    <input type="submit" name="add" value="Add">
+    <input type="submit" name="sub" value="Subtract">
+    <input type="submit" name="mul" value="Multiply">
+    <input type="submit" name="div" value="Divide">
+</form>
+
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $num1 = $_POST['num1'];
+    $num2 = $_POST['num2'];
+
+    if (isset($_POST['add'])) {
+        $result = $num1 + $num2;
+        echo "<h3>Result: $result</h3>";
+    }
+    elseif (isset($_POST['sub'])) {
+        $result = $num1 - $num2;
+        echo "<h3>Result: $result</h3>";
+    }
+    elseif (isset($_POST['mul'])) {
+        $result = $num1 * $num2;
+        echo "<h3>Result: $result</h3>";
+    }
+    elseif (isset($_POST['div'])) {
+        if ($num2 == 0) {
+            echo "<h3 style='color:red;'>Cannot divide by zero!</h3>";
+        } else {
+            $result = $num1 / $num2;
+            echo "<h3>Result: $result</h3>";
+        }
+    }
+}
+?>
+
+</body>
+</html>
